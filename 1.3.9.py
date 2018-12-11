@@ -130,6 +130,49 @@ def library():
         else:
             userAction = raw_input('Can\'t do that.')
             
+def biosphere():
+    global enteredRooms
+    global openedDoors
+    global playerItems
+    exitRoom = False
+    print('You entered the biosphere, trees and lush bombard you, and the scent of flowers penetrate your nose.')
+    print('Through the clearing you encounter that the only way out is the way in, back east(hangar)')      
+    print('Light flickers from a distance, should you follow, danger awaits.')
+    if 'biosphere' in enteredRooms:
+        print('the birds sing upon your return')
+    else:
+        enteredRooms += ['biosphere']
+    
+    while exitRoom == False:
+        userAction = raw_input('> ')
+        
+        if userAction.lower() == 'go west':
+            exitRoom = True
+        
+        elif userAction.lower() == 'follow light':
+            print('You have reached a clearing, wildlife circles around you in almost a satanic way, what appears in front of you is a great unused candle, the light is flickering from above')
             
+        elif userAction.lower() == 'light candle' and lightCandle == False:
+            print('You need a lighter')
+            
+        elif userAction.lower() == 'light candle' and lightCandle == True:
+            print('The candle is now lit')
+            
+        elif userAction.lower() == 'look around':
+            print('Trees are everywhere, vines hang, birds chirp, however none is to be seen')
+            
+        elif userAction.lower() == 'climb tree':
+            print('Now standing atop the tree you see the entirety of the biosphere, the light flickering before is an old ceiling light giving out')
+            
+        elif userAction.lower == 'climb vine':
+            print('You attempt to climb the vine to reach heaven as that is your only escape but the vine cuts loose and you are sent tumbling to the floor.')
+            print('A thump was heard from the distance after your fall')
+            
+        else:
+            userAction = raw_input('Can\'t do that')
+        
+            
+            
+
         
             
