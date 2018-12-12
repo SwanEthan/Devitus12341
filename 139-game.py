@@ -246,12 +246,12 @@ def startGame():
     
         while roomIn == 'library':
             roomItems = ['smallCandle']
-            dvHist = False
+            
             exitRoom = False
             print('\nThis is library.')
-            print('\nYou have reached a dead end, there is only one door out, back west(cafe)')
-            print('\nBookcases tower precariously over you, cobwebs scatter the corners, and a ragged desk sits at the center of the room.')
-            print('\nThere is also a worn history book alone on a shelf off to the side with a faded red triangle on the cover.')
+            print('You have reached a dead end, there is only one door out, back west(cafe)')
+            print('Bookcases tower precariously over you, cobwebs scatter the corners, and a ragged desk sits at the center of the room.')
+            print('There is also a worn history book alone on a shelf off to the side with a faded red triangle on the cover.')
             if 'library' in enteredRooms:
                 print('The book cases seem even closer to falling than before')
             else:
@@ -266,8 +266,8 @@ def startGame():
                     print('The bookshelves seem to go up forever.')
                     
                 elif userAction.lower() == 'go to desk' or userAction.lower() == 'look desk':
-                    if dvHist:
-                        if raw_input('Do you want to read about the Devitus? Y/N\n> ').lower() == 'y':
+                        n = raw_input('Do you want to read about the Devitus? Y/N\n> ')
+                        if n.lower() == 'y':
                             print('\nThere is a note, "According to the legend, the Devitus that roams this abandoned base can be summoned and excorcised."')
                             print('\nYou turn the note around, there is a smudged list') 
                             print('\nStep 1: Summoning the Devitus requires three(3) open flames. Candles will do. Gather and light these.')
@@ -284,7 +284,6 @@ def startGame():
                 elif userAction.lower() == 'take candle' and 'smallCandle' not in playerItems:
                     print('\nYou took the small candle.')
                     playerItems += ['smallCandle']
-                    roomItems -= 'smallCandle'
                 
                 elif userAction.lower() == 'go north':
                     print('\nNowhere to go that way')
@@ -303,7 +302,6 @@ def startGame():
                     print('Can\'t do that.')
                 
         while roomIn == 'biosphere':
-            roomItems = ['bigCandle']
             vineClimbed = False
             exitRoom = False
             print('You entered the biosphere, trees and lush bombard you, and the scent of flowers penetrates your nose.')
@@ -333,7 +331,6 @@ def startGame():
                 elif userAction.lower() == 'take candle' and 'bigCandle' not in playerItems:
                     print('You grab the candle and shake some mulch off it.')    
                     playerItems += ['bigCandle']
-                    roomItems -= 'bigCandle'
                     
                 elif userAction.lower() == 'look around':
                     print('Trees are everywhere, vines hang, birds chirp, however none is to be seen')
@@ -369,6 +366,7 @@ def startGame():
                         
                 elif userAction.lower() == 'take key' and 'secretKey' not in playerItems:
                         print('You took the key.')
+                        playerItems += ['secretKey']
                         
                 elif userAction.lower() == 'take candle' and 'scentedCandle' not in playerItems:
                         print('You took the candle. Seems to be... maple syrup scented. Nice(?)')
