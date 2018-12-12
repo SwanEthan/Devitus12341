@@ -11,23 +11,16 @@ unlockedDoors = []
 rocketOn = False
 
 
-
-hasSmCnd, hasBgCnd, hasScCnd, hasCcKey, hasSecKey, hasLighter = False
-
 def startGame():
     
     print('')
     print('Alarms are blaring. The Earth looms in the skylight above you.')
     print('You can\'t quite place the feeling, but something is very wrong here.')
     raw_input('Press enter to step into the hangar.')
-    hangar()
+    hangar(playerItems, enteredRooms)
     
 
-def hangar():
-    global playerItems
-    global enteredRooms
-    global openedDoors
-    global litCandles
+def hangar(playerItems, enteredRooms):
     exitRoom = False
     print('(Hangar)')    
     while exitRoom == False:
@@ -43,7 +36,7 @@ def hangar():
             
         elif userAction.lower() == 'enter rocket' and rocketOn == True:
             exitRoom = True
-            #rocket()            
+            rocket(playerItems)            
             
         elif userAction.lower() == 'enter rocket' and rocketOn == False:
             print('You can\'t enter the rocket without the launch codes.')
@@ -51,28 +44,25 @@ def hangar():
             
         elif userAction.lower() == 'go north':
             exitRoom = True
-            cafe()
+            cafe(playerItems, enteredRooms)
             
         elif userAction.lower() == 'go south':
             exitRoom = True
-            boiler()
+            boiler(playerItems, enteredRooms)
             
             
         elif userAction.lower() == 'go east':
             exitRoom = True
-            bridge()
+            bridge(playerItems, enteredRooms)
             
         elif userAction.lower() == 'go west':
             exitRoom = True
-            biosphere()
+            biosphere(playerItems, enteredRooms)
             
         else:
             print('Can\'t do that.')
         
-def cafe():
-    global enteredRooms
-    global playerItems
-    global litCandles
+def cafe(playerItems, enteredRooms):
     exitRoom = False
     if 'room2' in enteredRooms:
         print('The cafe again. The pools of ketchup have dried a little.')
@@ -114,24 +104,22 @@ def cafe():
             
         elif userAction.lower() == 'go south':
             exitRoom = True
-            hangar()
+            hangar(playerItems, enteredRooms)
             
             
         elif userAction.lower() == 'go east':
             exitRoom = True
-            library()
+            library(playerItems, enteredRooms)
             
         elif userAction.lower() == 'go west':
             exitRoom = True
-            storageroom()
+            storageroom(playerItems, enteredRooms)
             
         else:
             print('Can\'t do that.')    
     
             
-def bridge():
-    global enteredRooms
-    global litCandles
+def bridge(playerItems, enteredRooms):
     exitRoom = False
     
     if 'bridge' in enteredRooms:
@@ -153,39 +141,52 @@ def bridge():
             
         elif userAction.lower() == 'go south':
             exitRoom = True
-            lockerroom()
+            lockerroom(playerItems, enteredRooms)
             
             
         elif userAction.lower() == 'go east' and 'ccKey' in playerItems:
             exitRoom = True
-            commandCenter()
+            commandCenter(playerItems, enteredRooms)
             
         elif userAction.lower() == 'go east' and 'ccKey' not in playerItems:
             print('It\'s useless trying to open that gigantic door without a key.')    
             
         elif userAction.lower() == 'go west':
             exitRoom = True
-            hangar()
+            hangar(playerItems, enteredRooms)
             
         else:
             print('Can\'t do that.')
             
-def rocket():    
-    global playerItems
+def rocket(playerItems):
     exitShip = False
     print('You board the ship. The only things you can do are take off to escape back to Earth, or exit the ship.')    
     while exitShip == False:
         userAction = raw_input('> ')
         if userAction.lower() == 'take off':
-            print('')
+            print('\nThe tremendous rumble of the rocket engine starting up turns your limbs to jelly in the cockpit.')
+            print('Massive bay doors open up overhead revealing the Earth still perched above you.')
+            print('Moments later you are traveling towards that planet at many times the speed of sound.')
+            print('As the cockpit noise neutralizers begin to dampen the noise of the ship, you begin to hear something...')
+            print('A husky cackle eminates from behind you. You lock eyes with the shrewd demon and know immediately...')
+            
+            if 'axeSpray' in playerItems:
+                print('\nFaster than the very ship you\'re on, you whip the AXE Body Spray out of your pocket.')
+                print('The Devitus\'s eyes widen in terror, just in time for you to unload the entire can directly in his face.')
+                print('The demon, beaten, offers you an egg in this trying time, and dissipates in a cloud of musky dust.')
+                print('The Devitus shall haunt the moon base no more, and you may now relax after another ghost busted.')
+                print('\nGAME WON')
+            else:
+                print('You could barely swivel your chair around to take a good look before the Devitus pounced in a T formation,')
+                print('instantly stealing your soul.')
+                print('\nGAME OVER')
+            break
+                            
         elif userAction.lower() == 'exit ship':
             exitShip = True
-            hangar()
+            hangar(playerItems, enteredRooms)
             
-def commandCenter():
-    global playerItems
-    global enteredRooms
-    global openedDoors
+def commandCenter(playerItems, enteredRooms):
     exitRoom = False
     deskItems = ['the launch codes']
     if 'cc' in enteredRooms:
@@ -204,7 +205,7 @@ def commandCenter():
         
         
         
-        print('You can almost read it if you squint... Deletus Devitus... interesting.')
+        print('You can read it if you squint really hard... Deletus Devitus... interesting.')
         
         enteredRooms += 'cc'
     
@@ -233,15 +234,11 @@ def commandCenter():
 	    
 	elif userAction == 'go west':
 	    exitRoom = True
-	    bridge()
+	    bridge(playerItems, enteredRooms)
         else:
             print('Can\'t do that.')
 
-def library():
-    global enteredRooms
-    global playerItems
-    global openedDoors
-    global litCandles
+def library(playerItems, enteredRooms):
     roomItems = ['smallCandle']
     dvHist = False
     exitRoom = False
@@ -294,16 +291,12 @@ def library():
             
         elif userAction.lower() == 'go west':
             exitRoom = True
-            cafe()
+            cafe(playerItems, enteredRooms)
         
         else:
             print('Can\'t do that.')
             
-def biosphere():
-    global enteredRooms
-    global openedDoors
-    global playerItems
-    global litCandles
+def biosphere(playerItems, enteredRooms):
     roomItems = ['bigCandle']
     vineClimbed = False
     exitRoom = False
@@ -323,7 +316,7 @@ def biosphere():
         
         if userAction.lower() == 'go east':
             exitRoom = True
-            hangar()
+            hangar(playerItems, enteredRooms)
             
         elif userAction.lower() == 'go north' or userAction.lower() == 'go south' or userAction.lower() == 'go west':
             print('Nothing that way but thick foliage and the dome wall.')
@@ -342,21 +335,17 @@ def biosphere():
         elif userAction.lower() == 'climb tree':
             print('Now standing atop the tree you see the entirety of the biosphere, the light flickering before is an old ceiling light giving out')
             
-        elif userAction.lower == 'climb vine' and vineClimbed == False:
+        elif userAction.lower() == 'climb vine' and vineClimbed == False:
             print('You attempt to climb the vine to reach heaven as that is your only escape but the vine cuts loose and you are sent tumbling to the floor.')
             print('A percussive thump fills the air when you land.')
         
-        elif userAction.lower == 'climb vine' and vineClimbed == True:
+        elif userAction.lower() == 'climb vine' and vineClimbed == True:
             print('Better not.')    
             
         else:
             print('Can\'t do that')
             
-def boiler():
-    global playerItems
-    global enteredRooms
-    global openedDoors
-    global litCandles
+def boiler(playerItems, enteredRooms):
     exitRoom = False
     
     print('\nIt\'s warm and dry in here. Smells like a swimming pool if it was recently boiled. Yup, this is the boiler room.')
@@ -374,7 +363,6 @@ def boiler():
             
        elif userAction.lower() == 'take key' and 'secretKey' not in playerItems:
             print('You took the key.')
-            hasSecKey = True
             
        elif userAction.lower() == 'take candle' and 'scentedCandle' not in playerItems:
             print('You took the candle. Seems to be... maple syrup scented. Nice(?)')
@@ -382,7 +370,7 @@ def boiler():
        
        elif userAction.lower() == 'go north':
             exitRoom = True
-            hangar()
+            hangar(playerItems, enteredRooms)
             
        elif userAction.lower() == 'go south':
             print('You\'re as far south as you can get. Content with your southerliness, you stay put.')
@@ -397,11 +385,10 @@ def boiler():
        else:
             print('Can\'t do that.')     
                    
-def lockerroom():
-    global enteredRooms
-    global openedDoors
-    global playerItems
+def lockerroom(playerItems, enteredRooms):
     exitRoom = False
+    candlesInLocker = False
+    candlesLit = False
     if 'lockerroom' in enteredRooms:
         print('The luster of the lockers welcome your return.')
     if 'lockerroom' not in enteredRooms:
@@ -415,7 +402,7 @@ def lockerroom():
         
         if userAction.lower() == 'go north':
             exitRoom = True
-            bridge()
+            bridge(playerItems, enteredRooms)
             
         elif userAction.lower() == 'go east' or userAction.lower() == 'go south' or userAction.lower() == 'go west':
             print('Can\'t go through lockers.')
@@ -428,17 +415,37 @@ def lockerroom():
             
         elif userAction.lower() == 'look picture' or userAction.lower() == 'look photo':
             print('Just looking at the picture sends gives notions for vomitting, but alas a t-posing Jack Nicholson appears\n, asserting his dominance over Martini whilst on a medical table. A truly cursed image.')
+        
+        elif (userAction.lower() == 'place candles in locker' and 'smallCandle' in playerItems and 'bigCandle' in playerItems and 'scentedCandle' in playerItems) or (userAction.lower() == 'put candles in locker' and 'smallCandle' in playerItems and 'bigCandle' in playerItems and 'scentedCandle' in playerItems):
+            print('You gently arrange all three candles in your locker')
+            candlesInLocker = True
             
+        elif userAction.lower() == 'light candles' and candlesInLocker:
+             print('You lit all the candles.')
+             candlesLit = True
+            
+        elif 'smallCandle' not  in playerItems or 'bigCandle' not in playerItems or 'scentedCandle' not  in playerItems:
+            print('You need more candles to do much here...') 
+               
         elif userAction.lower() == 't-pose' or userAction.lower() == 'tpose' or userAction.lower() == 't pose':
-            print('')
+            if candlesLit != True:
+                print('Nothing happened...')
+            else:
+                print('\nIn a blinding flash, the Devitus\'s corporal form materializes, short and shrewd, before your very eyes.')
+                print('He is dazed by your assertation of dominance. Quickly! Expell the Devitus!')
+                while raw_input('\nChant the magic words: ').lower() != 'devitus deletus':
+                    print('...')
+                    print('Why don\'t you try again, he\'s still pretty dizzy.')
+                print('\nThe Devitus attempts to dress as spiderman and impersonate a doctor, but it is futile. Your spell has worked.')
+                print('For a moment reality warps and all light dims, but everything goes back to normal with a popping sound,')
+                print('signaling the successful exorcism of the demon. Just another day in the life of a ghost-busting astronaut.')
+                print('\nGAME WON')
+                break
             
         else:
             print('Can\'t do that.')
             
-def storageroom():
-    global playerItems
-    global openedDoors
-    global enteredRooms
+def storageroom(playerItems, enteredRooms):
     if 'storageroom' in enteredRooms:
         print('A familiar scent of bleach and windex breezes past you')
     if 'storageroom' not in enteredRooms:
@@ -473,7 +480,7 @@ def storageroom():
         
         elif userAction.lower() == 'go east':
             exitRoom = True
-            cafe()
+            cafe(playerItems, enteredRooms)
         
         elif userAction.lower() == 'look through floor' or 'scavenge floor':
             print('Through the mess of cleaning equipment, nothing was found, only a bigger mess was created.')
