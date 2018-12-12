@@ -245,7 +245,6 @@ def startGame():
                     print('Can\'t do that.')
     
         while roomIn == 'library':
-            roomItems = ['smallCandle']
             
             exitRoom = False
             print('\nThis is library.')
@@ -439,7 +438,7 @@ def startGame():
                     else:
                         print('\nIn a blinding flash, the Devitus\'s corporal form materializes, short and shrewd, before your very eyes.')
                         print('He is dazed by your assertation of dominance. Quickly! Expell the Devitus!')
-                        while raw_input('\nChant the magic words: ').lower() != 'devitus deletus':
+                        while raw_input('\nChant the magic words: ').lower() != 'deletus devitus':
                             print('...')
                             print('Why don\'t you try again, he\'s still pretty dizzy.')
                         print('\nThe Devitus attempts to dress as spiderman and impersonate a doctor, but it is futile. Your spell has worked.')
