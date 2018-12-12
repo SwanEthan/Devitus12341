@@ -28,7 +28,7 @@ def hangar():
     while exitRoom == False:
         userAction = raw_input('> ')
         if userAction.lower() == 'look rocket':
-            print('The rocket is innactive. Needs launch codes.') 
+            print('The rocket is inactive. Needs launch codes.') 
                        
         elif userAction.lower() == 'look around':
             print('The hangar is abandoned.')
@@ -87,15 +87,15 @@ def library():
     global playerItems
     global openedDoors
     exitRoom = False
-    print(' This is library, SHHHH!')
-    print('You have reached a dead end, there is only one door out, back west(cafe)')
-    print('Bookcases tower over you, cobwebs scatter the corners, and a ragged desk sits a middle the room')
-    print('There is a worn history book alone on the shelf, gasping to be read')
-    print('There is also a darkened bible looking book sitting nonchanlantly in the corner of the room')
     if 'library' in enteredRooms:
-        print('I see you have returned, with more knowledge to gain')
-    else:
+        print('I see you have returned, with more knowledge to gain, but this is still library.')
+    if 'library' not in enteredRooms:
         enteredRooms += ['library']
+        print(' This is library, SHHHH!')
+        print('You have reached a dead end, there is only one door out, back west(cafe)')
+        print('Bookcases tower over you, cobwebs scatter the corners, and a ragged desk sits a middle the room')
+        print('There is a worn history book alone on the shelf, gasping to be read')
+        print('There is also a darkened bible looking book sitting nonchanlantly in the corner of the room')
     
     while exitRoom == False:
         userAction = raw_input('> ')
@@ -131,7 +131,7 @@ def library():
         
         elif userAction.lower() == 'read bible' or 'read bible book' or 'read darkened book' or 'read book 2':
             print('There has been a transcribed passage, it reads: ')
-            print('According to the legend, this abandoned lunar base preyed upon by Devitus. He was a great janitor for the crew on shift. But tradegy struck when Devitus missed his armpits with his AXE body spray, shooting it straight into his naked eyeballs. In memoriam the crew placed three candles in secret locations around the lunar home. Legend has it if the three candles meet Devitus can make a grand return.')
+            print('According to the legend, this abandoned lunar base preyed upon by Devitus. He was a great janitor for the crew on shift. But tradegy struck when Devitus missed his armpits with his AXE body spray, shooting it straight into his naked eyeballs. In memoriam the crew placed three candles in secret locations around the lunar home. Legend has it if the three candles are lit, the Devitus can make a grand return.')
             print('The rest is encrypted.')
         else:
             userAction = raw_input('Can\'t do that.')
@@ -141,13 +141,13 @@ def biosphere():
     global openedDoors
     global playerItems
     exitRoom = False
-    print('You entered the biosphere, trees and lush bombard you, and the scent of flowers penetrate your nose.')
-    print('Through the clearing you encounter that the only way out is the way in, back east(hangar)')      
-    print('Light flickers from a distance, should you follow, danger awaits.')
     if 'biosphere' in enteredRooms:
         print('the birds sing upon your return')
     if 'biosphere' not in enteredRooms:
         enteredRooms += ['biosphere']
+        print('You entered the biosphere, trees and lush bombard you, and the scent of flowers penetrate your nose.')
+        print('Through the clearing you encounter that the only way out is the way in, back east(hangar)')      
+        print('Light flickers from a distance, should you follow, danger awaits.')
     
     while exitRoom == False:
         userAction = raw_input('> ')
@@ -158,10 +158,10 @@ def biosphere():
         elif userAction.lower() == 'follow light' or 'go to light':
             print('You have reached a clearing, wildlife circles around you in almost a satanic way, what appears in front of you is a great unused candle, the light is flickering from above')
             
-        elif userAction.lower() == 'light candle' and lightCandle == False:
+        elif userAction.lower() == 'light candle' and 'lighter' not in playerItems:
             print('You need a lighter')
-            w
-        elif userAction.lower() == 'light candle' and lightCandle == True:
+            
+        elif userAction.lower() == 'light candle' and 'lighter' in playerItems:
             print('The candle is now lit')
             
         elif userAction.lower() == 'look around':
@@ -182,14 +182,14 @@ def lockerroom():
     global openedDoors
     global playerItems
     exitRoom = False
-    print('You have walked upon another dead end, the only way out is the way you entered, north(bridge)')
-    print('Lockers gallantly file the wall of the room, all locked but one remains ajar')
-    print('The benches that outline the lockers has been forcefully removed from its hinges and relocated in the center of the room.')
     if 'lockerroom' in enteredRooms:
         print('The luster of the lockers welcome your return')
     if 'lockerroom' not in enteredRooms:
         enteredRooms += ['lockerroom']
-        
+        print('You have walked upon another dead end, the only way out is the way you entered, north(bridge)')
+        print('Lockers gallantly file the wall of the room, all locked but one remains ajar')
+        print('The benches that outline the lockers has been forcefully removed from its hinges and relocated in the center of the room.')
+    
     while exitRoom == False:
         userAction = raw_input('> ')
         
@@ -211,9 +211,44 @@ def lockerroom():
         else:
             userAction = raw_input('Can\'t do that.')
             
+def storageroom():
+    global playerItems
+    global openedDoors
+    global enteredRooms
+    if 'storageroom' in enteredRooms:
+        print('A familiar scent of bleach and windex breezes past you')
+    if 'storageroom' not in enteredRooms:
+        enteredRooms += ['storageroom']
+        print('There are two doors in this room, a secret door, and the way you came - east(cafe)')
+        print('Towels and cleaning chemicals scour the area, the mops lay arest on a side door that appears to be locked, with a "Restricted Access" sign above it.')
+        print('The room is a mess, there remains one light that shines brillantly into the equipment below.')
+    exitRoom = False
+    
+    while exitRoom == False:
+        userAction = raw_input('> ')
         
+        if userAction.lower() == 'open door' or 'use key' or 'use secret key' and 'secretKey' in playerItems:
+            print('As you shove open the door you fall and land fresh moon surface. Because you are so illfully prepared, oxygen escapes you in the burning temperatures of the moon as you face the sun. \n You collaspe, dead and numb. \n \n GAME OVER')
+            break
+        
+        elif userAction.lower() == 'open door' or 'use key' or 'use secret key' and 'secretKey' not in playerItems:
+            print('The door is locked, "RESTRICTED ACCESS" reads across the door, a key is required')
             
+        elif userAction.lower() == 'look around':
+            print('Clorox wipes and bleach line the shelfs, bottles of windex are scattered across the floor. It feels as if something could be hiding.')
             
-
+        elif userAction.lower() == 'look through shelves' or 'look at shelves':
+            print('By removing the bleach and the wipes has led you to find a very important key to the command center')
+            playerItems += 'ccKey'
+        
+        elif userAction.lower() == 'go east':
+            exitRoom = True
+            cafe()
+        
+        elif userAction.lower() == 'look through floor' or 'scavenge floor':
+            print('Through the mess of cleaning equipment, nothing was found, only a bigger mess was created.')
+            
+        else:
+            userAction = raw_input('Can\'t do that.')
         
             
