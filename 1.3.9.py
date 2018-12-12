@@ -91,6 +91,7 @@ def library():
     print('You have reached a dead end, there is only one door out, back west(cafe)')
     print('Bookcases tower over you, cobwebs scatter the corners, and a ragged desk sits a middle the room')
     print('There is a worn history book alone on the shelf, gasping to be read')
+    print('There is also a darkened bible looking book sitting nonchanlantly in the corner of the room')
     if 'library' in enteredRooms:
         print('I see you have returned, with more knowledge to gain')
     else:
@@ -98,7 +99,7 @@ def library():
     
     while exitRoom == False:
         userAction = raw_input('> ')
-        if userAction.lower() == 'read book':
+        if userAction.lower() == 'read history book':
             print("The Great War of The Internet Age” stands boldly at the top of the book. It was the date, December 2nd, 2018. T-Series the infamous Indian record company was remarkably close to passing Pewdiepie and becoming theNumber one most subscribed account on the YouTube platform. The 9 year olds were waging the good fight but it wasn’t enough, the gap was closing, and it was an only a matter of hours before the war was lost. It seemed all hope was lost, Mr. Beast had failed, Pewds best friends Jack and Mark had abandoned him. The 9-year-olds regrouped and revitalized their attack strategy. They came out the door swinging gaining a couple thousand subscribers but it wasn’t enough, T-Series was catching up and fast. Greyness loomed over the heads of the 9-year-olds, it seemed that finally that their king would be dethroned, but a miracle happened! Markiplier, Boogie2988, and Jacksepticeye had joined the fight, swinging the tide of battle, the war was not lost, reinforcements had come through this was a major turning point. Markiplier had posted a livestream of him continually talking and not shutting up ever until people subscribed to pewdiepie, and from there the 9-year-olds were off the the races. Jack tweeted a simple but direct poem encouraging his fans, and Davie504 played the Felix’s most hottest song, the T-Series disstrack for 10 hours straight, all collaborations of efforts were pulling through and pewdiepie had regained a comfortable subscriber lead. He ended up pulling 544k subscribers on december 2nd, a very important day in the war of Pewdiepie v. T-Series. Pewds had won this great battle but the war was still not over. Subscribe to Pewdiepie to make a difference again.")
         
         elif userAction.lower() == 'look around':
@@ -118,15 +119,20 @@ def library():
             
             
             
-            print('The list is too worn to read')
+            print('The rest is too worn to be read.')
+            print('Sounds are heard from afar, the scent of AXE brutally and wax brutally invade your nostrils')
             
-        elif userAction.lower() == 'look at polaroid':
+        elif userAction.lower() == 'look at polaroid' or 'look at photo' or 'look at picture':
             print('You see him, the image has appeared, the Detivus at full might stares blankly into your eyes. Hope escapes you in this moment as the picture of the Detivus overwhelmes all thought.')
             
         elif userAction.lower() == 'go west':
             exitRoom = True
             cafe()
         
+        elif userAction.lower() == 'read bible' or 'read bible book' or 'read darkened book' or 'read book 2':
+            print('There has been a transcribed passage, it reads: ')
+            print('According to the legend, this abandoned lunar base preyed upon by Devitus. He was a great janitor for the crew on shift. But tradegy struck when Devitus missed his armpits with his AXE body spray, shooting it straight into his naked eyeballs. In memoriam the crew placed three candles in secret locations around the lunar home. Legend has it if the three candles meet Devitus can make a grand return.')
+            print('The rest is encrypted.')
         else:
             userAction = raw_input('Can\'t do that.')
             
@@ -140,7 +146,7 @@ def biosphere():
     print('Light flickers from a distance, should you follow, danger awaits.')
     if 'biosphere' in enteredRooms:
         print('the birds sing upon your return')
-    else:
+    if 'biosphere' not in enteredRooms:
         enteredRooms += ['biosphere']
     
     while exitRoom == False:
@@ -149,12 +155,12 @@ def biosphere():
         if userAction.lower() == 'go west':
             exitRoom = True
         
-        elif userAction.lower() == 'follow light':
+        elif userAction.lower() == 'follow light' or 'go to light':
             print('You have reached a clearing, wildlife circles around you in almost a satanic way, what appears in front of you is a great unused candle, the light is flickering from above')
             
         elif userAction.lower() == 'light candle' and lightCandle == False:
             print('You need a lighter')
-            
+            w
         elif userAction.lower() == 'light candle' and lightCandle == True:
             print('The candle is now lit')
             
@@ -170,6 +176,41 @@ def biosphere():
             
         else:
             userAction = raw_input('Can\'t do that')
+        
+def lockerroom():
+    global enteredRooms
+    global openedDoors
+    global playerItems
+    exitRoom = False
+    print('You have walked upon another dead end, the only way out is the way you entered, north(bridge)')
+    print('Lockers gallantly file the wall of the room, all locked but one remains ajar')
+    print('The benches that outline the lockers has been forcefully removed from its hinges and relocated in the center of the room.')
+    if 'lockerroom' in enteredRooms:
+        print('The luster of the lockers welcome your return')
+    if 'lockerroom' not in enteredRooms:
+        enteredRooms += ['lockerroom']
+        
+    while exitRoom == False:
+        userAction = raw_input('> ')
+        
+        if userAction.lower() == 'go north':
+            exitRoom = True
+            bridge()
+        
+        elif userAction.lower() == 'look around':
+            print('In an almost satanic way, the locker benches form a table in the middle of the room, with one locker door ajar.')
+            
+        elif userAction.lower() == 'look in locker' or 'go to locker' or 'check locker' or 'look at locker':
+            print('This locker is barren except for a small picture on the top shelf')
+            
+        elif userAction.lower() == 'look at picture' or 'look at photo' or 'pick up photo' or 'pick up picture':
+            print('Just looking at the picture sends gives notions for vomitting, but alas a t-posing Jack Nicholson appears\n, asserting his dominance over Martini whilst on a medical table. A truly cursed image.')
+            
+        elif userAction.lower() == 'T-pose' or 'tpose' or 't pose':
+            print('')
+        else:
+            userAction = raw_input('Can\'t do that.')
+            
         
             
             
